@@ -1,9 +1,10 @@
-package com.example.list_todo
+package com.example.list_todo.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.list_todo.Adapter.TodoAdapter
 import com.example.list_todo.databinding.ActivityMainBinding
 import com.example.list_todo.model.DataItem
 import com.example.list_todo.model.ResponseTodo
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.fbTODadd.setOnClickListener{
-            startActivity(Intent(this@MainActivity,Todo_Add::class.java))
+            startActivity(Intent(this@MainActivity, Todo_Add::class.java))
         }
 //        mainAdapter.setOnItemClickListener(object : ProdukAdapter.OnItemClickListener {
 //            override fun onItemClick(position: Int) {
@@ -57,6 +58,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<ResponseTodo>, t: Throwable) {
+
             }
 
         })
