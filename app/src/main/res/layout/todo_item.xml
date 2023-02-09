@@ -6,12 +6,12 @@
     android:padding="10dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:orientation="horizontal"
         android:layout_height="wrap_content">
 
         <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
@@ -28,29 +28,43 @@
         android:layout_height="wrap_content"
         android:text="anjing"/>
     </LinearLayout>
+        <LinearLayout
+            android:id="@+id/lnr_baground"
+            android:layout_width="50dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/black"
+            android:layout_height="wrap_content">
         <TextView
             android:id="@+id/true_false"
-            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/black"
             android:textSize="15dp"
             android:textColor="#fff"
             android:text="nklnl"/>
+        </LinearLayout>
     </LinearLayout>
 <LinearLayout
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_gravity="end"
     android:layout_height="wrap_content">
-    <ImageView
-        android:id="@+id/img_delet"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_delet"
         android:layout_weight="1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/ic_baseline_delete_24"/>
-    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="Delet"
+        android:textColor="#fff"
+        android:background="@drawable/bagroundbtndelet"/>
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_weight="1"
-        android:id="@+id/img_update"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/update"/>
+        android:id="@+id/btn_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+        android:text="update"
+        android:background="@drawable/bagroundbtnupdate"/>
 </LinearLayout>
 </LinearLayout>

@@ -1,14 +1,21 @@
-package com.example.list_todo
+package com.example.list_todo.Adapter
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.list_todo.R
+import com.example.list_todo.ui.Todo_Add
 import com.example.list_todo.model.DataItem
 import com.example.list_todo.model.ResponseTodo
 import com.example.list_todo.networking.ApiTodo
@@ -30,8 +37,10 @@ class TodoAdapter(private var listData:  ArrayList<DataItem>):
     inner class myviewHolder (item: View) : RecyclerView.ViewHolder(item){
         val tl : TextView = item.findViewById(R.id.tv_titel)
         val ct : TextView = item.findViewById(R.id.tv_conten)
-        val dl : ImageView = item.findViewById(R.id.img_delet)
-        val up : ImageView = item.findViewById(R.id.img_update)
+        val dl : Button = item.findViewById(R.id.btn_delet)
+        val up : Button = item.findViewById(R.id.btn_update)
+        val fs : TextView = item.findViewById(R.id.true_false)
+        val bg : LinearLayout = item.findViewById(R.id.lnr_baground)
 //        val id : TextView = item.findViewById(R.id.tv_id)
 
 //        val av : ImageView = item.findViewById(R.id.iv_avatar)
@@ -49,18 +58,26 @@ class TodoAdapter(private var listData:  ArrayList<DataItem>):
 
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: myviewHolder, position: Int) {
         val data = listData[position]
 //        holder.id.text = data.id.toString()
         holder.tl.text = data.title
         holder.ct.text = data.content
+        holder.fs.text = data.complete.toString()
+        if (data.complete == true){
+            holder.bg.setBackgroundColor(Color.BLUE)
+        }
+        else{
+            holder.bg.setBackgroundResource(R.color.orange)
+        }
         holder.up.setOnClickListener {
-            val i = Intent(holder.itemView.context,Todo_Add::class.java)
-            i.putExtra("id",data.id)
-            i.putExtra("title",data.title)
-            i.putExtra("content",data.content)
-            i.putExtra("complete",data.complete)
-            holder.itemView.context.startActivity(i)
+                val i = Intent(holder.itemView.context, Todo_Add::class.java)
+                i.putExtra("id", data.id)
+                i.putExtra("title", data.title)
+                i.putExtra("content", data.content)
+                i.putExtra("complete", data.complete)
+                holder.itemView.context.startActivity(i)
         }
         holder.dl.setOnClickListener {
             ApiTodo.endpoint.deletTodo("${data.id}").enqueue(object : Callback<ResponseTodo>{
